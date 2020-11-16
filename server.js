@@ -1,14 +1,10 @@
-import { urlencoded } from 'express';
+const express    = require('express');
 const app = express();
-const port = 8080;
+const routes = require('./routes/index');
+const port   = 8080;
 
-import DataLayer from './companydata/index.js';
-let dl = new DataLayer("lxp3901");
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use('/CompanyServices', routes);
 
-// app.use(urlencoded({extended:false}))
-
-app.get('/', (req, res) => {
-
-});
-
-
+app.listen(port, () => console.log('Listening on port 8080...'));
